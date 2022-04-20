@@ -14,6 +14,7 @@ public class Docente extends Persona{
     private String codDocente;
 
     public Docente() {
+
     }
 
     public String getCodDocente() {
