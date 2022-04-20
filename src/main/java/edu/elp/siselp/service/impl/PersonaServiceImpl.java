@@ -22,12 +22,11 @@ public class PersonaServiceImpl implements IPersonaService {
         for (Persona persona: personaList){
             System.out.println(persona.toString());
         }
-
         return personaList;
     }
 
     @Override
     public Persona obtenerPersonaByDni(String dni) {
-        return null;
+        return this.personaDao.buscarPersona(dni);
     }
 }
