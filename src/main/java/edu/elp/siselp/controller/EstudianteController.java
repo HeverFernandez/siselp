@@ -48,4 +48,19 @@ public class EstudianteController {
     public Estudiante estudianteByDni(@PathVariable("coddni") String coddni){
         return this.estudianteService.obtenerPorCodigoOrDni(coddni);
     }
+
+    @PostMapping("/delete/{idestudiante}")
+    public String eliminarEstudiante(@PathVariable("idestudiante") Long idestudiante){
+        this.estudianteService.eliminarEstudiante(idestudiante);
+        return "Estudiante eliminado correctamente";
+    }
+
+    @PutMapping("/update")
+    public String actualizarEstudiante(@RequestBody String JsonEstudiante) throws JsonProcessingException {
+        Estudiante estudiante = this.objectMapper.readValue(JsonEstudiante,Estudiante.class);
+
+        this.estudianteService.guardarEstudiante(estudiante);
+
+        return "Estudiante actualizado correctamente";
+    }
 }

@@ -20,4 +20,10 @@ public interface IEstudianteService {
 
     //Obtener estudiante por código o por dni
     Estudiante obtenerPorCodigoOrDni(String coddni);
+
+    //Elimina un registro de estudiante
+    void eliminarEstudiante(Long id);
+
+    //Actualiza un registro de estudiante
+    void actualizarEstudiante(Estudiante estudiante);
 }

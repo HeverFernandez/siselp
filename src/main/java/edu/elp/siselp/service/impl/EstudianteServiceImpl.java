@@ -36,4 +36,14 @@ public class EstudianteServiceImpl implements IEstudianteService {
     public Estudiante obtenerPorCodigoOrDni(String coddni) {
         return this.estudianteDao.obtenerPorCodigoOrDni(coddni);
     }
+
+    @Override
+    public void eliminarEstudiante(Long id) {
+        this.estudianteDao.deleteById(id);
+    }
+
+    @Override
+    public void actualizarEstudiante(Estudiante estudiante) {
+        this.estudianteDao.save(estudiante);
+    }
 }
