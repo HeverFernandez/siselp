@@ -1,5 +1,7 @@
 package edu.elp.siselp.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
@@ -15,8 +17,9 @@ public class Escuela {
 
     private String denominacion;
 
-    @OneToMany(mappedBy = "escuela")
-    private List<Estudiante> estudianteLis;
+    //@OneToMany(mappedBy = "escuela", fetch = FetchType.LAZY)
+    //@JsonIgnore
+    //private List<Estudiante> estudianteLis;
     
     public Escuela() {
     }
@@ -53,14 +56,5 @@ public class Escuela {
     public void setDenominacion(String denominacion) {
         this.denominacion = denominacion;
     }
-
-    public List<Estudiante> getEstudianteLis() {
-        return estudianteLis;
-    }
-
-    public void setEstudianteLis(List<Estudiante> estudianteLis) {
-        this.estudianteLis = estudianteLis;
-    }
-
 
 }
