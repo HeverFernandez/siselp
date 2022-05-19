@@ -25,11 +25,19 @@ public class Usuario {
             inverseJoinColumns = @JoinColumn(name = "idrole"))
     private Set<Rol> roles = new HashSet<>();
 
+
     public Usuario() {
     }
 
     public Usuario(Long idusuario) {
         this.idusuario = idusuario;
+    }
+
+    public Usuario(String username, String contrasenia, Persona persona, Set<Rol> roles) {
+        this.username = username;
+        this.contrasenia = contrasenia;
+        this.persona = persona;
+        this.roles = roles;
     }
 
     public Usuario(Long idusuario, String username, String contrasenia, Persona persona) {
@@ -45,6 +53,12 @@ public class Usuario {
         this.contrasenia = contrasenia;
         this.persona = persona;
         this.roles = roles;
+    }
+
+    public Usuario(String username, String contrasenia, Persona persona) {
+        this.username = username;
+        this.contrasenia = contrasenia;
+        this.persona = persona;
     }
 
     public Long getIdusuario() {

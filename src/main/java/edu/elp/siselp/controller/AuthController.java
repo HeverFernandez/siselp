@@ -71,7 +71,7 @@ public class AuthController {
 
             Collection<? extends GrantedAuthority> rol = userDetails.getAuthorities();
 
-            //return new JwtAuthenticationResponse(HttpStatus.OK.value(),"Sesión de inicio correcto",jwt, userDetails.getUsername(),userDetails.getAuthorities(), user.getPersona().getNombre(),user.getPersona().getIdpersona());
+            return new JwtAuthenticationResponse(HttpStatus.OK.value(),"Sesión de inicio correcto",jwt, userDetails.getUsername(),userDetails.getAuthorities(), user.getPersona().getNombre(),user.getPersona().getIdpersona());
         }
         return new JwtAuthenticationResponse(HttpStatus.UNAUTHORIZED.value(),"Credenciales invalidas o usuario no registrado");
         }
