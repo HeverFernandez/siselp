@@ -47,13 +47,17 @@ public class EstudianteController {
     }
 
     @PostMapping("/registrar")
-    public String registrarEstudiante(@RequestBody String jsonEstudiante) throws JsonProcessingException {
+    public RestResponse registrarEstudiante(@RequestBody String jsonEstudiante) throws JsonProcessingException {
 
         Estudiante estudiante = this.objectMapper.readValue(jsonEstudiante,Estudiante.class);
 
-        this.estudianteService.guardarEstudiante(estudiante);
-
-        return "Se guardó correctamente";
+        try{
+            this.estudianteService.guardarEstudiante(estudiante);
+            return new RestResponse(HttpStatus.OK.value(),"Registro guardado satisfactoriamente",estudiante);
+        }catch (Exception e){
+            e.printStackTrace();
+            return new RestResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(),"Lamentamos el inconveniente, vuelva mas tarde");
+        }
     }
 
     @GetMapping("/bycodigo/{coddni}")
