@@ -15,7 +15,7 @@ public class Usuario {
     private String username;
     private String contrasenia;
 
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne
     @JoinColumn(referencedColumnName = "idpersona")
     private Persona persona;
 

@@ -5,10 +5,12 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import edu.elp.siselp.entity.Escuela;
 import edu.elp.siselp.entity.Estudiante;
 import edu.elp.siselp.service.IEstudianteService;
+import edu.elp.siselp.util.RestResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,8 +26,18 @@ public class EstudianteController {
     private ObjectMapper objectMapper;
 
     @GetMapping("/list")
-    public List<Estudiante> listaEstudiantesByEscuela(@RequestParam("idescuela")Escuela idescuela){
-        return this.estudianteService.listaEstudiantesByEscuela(idescuela);
+    public RestResponse listaEstudiantesByEscuela(@RequestParam("idescuela")Escuela idescuela){
+        List<Estudiante> estudianteList = this.estudianteService.listaEstudiantesByEscuela(idescuela);
+        try{
+            if (estudianteList.isEmpty()){
+                return new RestResponse(HttpStatus.NO_CONTENT.value(),"No se encontraron registros");
+            }else {
+                return new RestResponse(HttpStatus.OK.value(),"Registro de estudiantes",estudianteList);
+            }
+        }catch (Exception e){
+            e.printStackTrace();
+            return new RestResponse(HttpStatus.INTERNAL_SERVER_ERROR.value(),"Estamos trabajando en ello, vuelva mas tarde");
+        }
     }
 
     @GetMapping("/listPorPagina")
