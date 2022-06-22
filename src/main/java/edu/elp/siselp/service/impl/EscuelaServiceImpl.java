@@ -18,4 +18,9 @@ public class EscuelaServiceImpl implements IEscuelaService {
     public List<Escuela> listaEscuelas() {
         return this.escuelaDao.findAll();
     }
+
+    @Override
+    public Escuela registrarEscuela(Escuela escuela) {
+        return this.escuelaDao.save(escuela);
+    }
 }
