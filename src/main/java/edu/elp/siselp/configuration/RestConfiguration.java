@@ -12,6 +12,7 @@ import org.springframework.web.filter.CorsFilter;
 @Configuration
 public class RestConfiguration {
 
+
     @Bean
     public CorsFilter corsFilter() {
         final UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
@@ -29,4 +30,6 @@ public class RestConfiguration {
         source.registerCorsConfiguration("/**", config);
         return new CorsFilter(source);
     }
+
+
 }
